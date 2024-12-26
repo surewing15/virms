@@ -64,7 +64,7 @@
     </style>
 </head>
 
-<body>
+<body onload="window.print()">
     <div class="page">
         <div class="ticket">
             <div class="center">
@@ -91,8 +91,9 @@
                 <b>VIOLATOR/DRIVER:</b> <span class="line">{{ $info->violator_name }}</span>
             </div>
             <div class="field">
-                <b>ADDRESS:</b> <span class="line">{{ $info->address }}</span>
+                <b>ADDRESS:</b> <span class="line">{{ $info->address ?? 'null' }} </span>
             </div>
+
             <div class="field">
                 <p>You are hereby cited for VIOLATING</p>
             </div>

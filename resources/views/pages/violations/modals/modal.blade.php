@@ -143,22 +143,22 @@
                     <div class="col-lg-8" style="float: right">
                         <hr class="mt-2 mb-2">
                     </div>
-                    @if(Auth::user()->account_type != 'Officer')
-                    <div class="col-lg-5">
-                    </div>
-                    <div class="col-lg-7 justify-end" style="float: right">
-                        <div class="form-group mt-2 mb-2 justify-end">
-                            <button onclick="remove()" type="button" class="btn btn-danger">
-                                <em class="icon ni ni-trash"></em>
-                                &ensp;Remove
-                            </button>
-                            &ensp;
-                            <button type="submit" class="btn btn-info">
-                                <em class="icon ni ni-save"></em>
-                                &ensp;Save Changes
-                            </button>
+                    @if (Auth::user()->account_type != 'Officer')
+                        <div class="col-lg-5">
                         </div>
-                    </div>
+                        <div class="col-lg-7 justify-end" style="float: right">
+                            <div class="form-group mt-2 mb-2 justify-end">
+                                <button onclick="remove()" type="button" class="btn btn-danger">
+                                    <em class="icon ni ni-trash"></em>
+                                    &ensp;Remove
+                                </button>
+                                &ensp;
+                                <button type="submit" class="btn btn-info">
+                                    <em class="icon ni ni-save"></em>
+                                    &ensp;Save Changes
+                                </button>
+                            </div>
+                        </div>
                     @endif
                 </form>
             </div>
@@ -196,7 +196,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '{{ route("violation.entry.remove") }}',
+                    url: '{{ route('violation.entry.remove') }}',
                     type: 'POST',
                     data: {
                         id: default_id,

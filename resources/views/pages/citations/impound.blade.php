@@ -17,7 +17,7 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                       
+
                         <form action="{{ route('vehicle-impoundings.store') }}" method="POST"
                             enctype="multipart/form-data" autocomplete="off">
                             @csrf
@@ -38,7 +38,7 @@
                                         </div>
                                         <input type="hidden" name="id_x" value="{{ $id }}">
                                         <input type="text" class="form-control" id="license_no" name="license_no"
-                                            placeholder="Enter here..">
+                                            disabled placeholder="Enter here..">
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +265,7 @@
                                 <input class="form-control" rows="2" name="reason_of_impoundment_reason"
                                     placeholder="Specify reason if OTHER">
                             </div>
-                            <div class="mb-3"  style="display: none">
+                            <div class="mb-3" style="display: none">
                                 <label for="incident-location" class="form-label">Incident Location / Address</label>
                                 <input class="form-control" id="incident-location" name="incident_address"
                                     rows="2" placeholder="Text box">
@@ -294,7 +294,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Reason for Impounding -->
                             <div class="row mt-2 align-center">
                                 <div class="col-lg-4">
@@ -494,7 +494,7 @@
             // Set the values of the form inputs
             text_plate_number.value = '{{ $info->plate_number }}';
             text_violator_name.value = '{{ $info->violator_name }}';
-            text_address.value = '';
+            text_address.value = '{{ $info->address }}';
             //text_date.value = '';
             //text_municipal_ordinance_number.value = '{{ $info->municipal_ordinance_number }}';
             //text_specific_offense.value = specific_offense;

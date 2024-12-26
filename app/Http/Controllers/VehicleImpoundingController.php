@@ -85,10 +85,11 @@ class VehicleImpoundingController extends Controller
             'photo_attachment' => json_encode($photoPaths),  // Store image paths
         ]);
 
-        TrafficCitation::where('id', $request->id_x)->update(['moved_status' => '1']);        
+        TrafficCitation::where('id', $request->id_x)->update(['moved_status' => null]);
+        TrafficCitation::where('id', $request->id_x)->update(['moved_status' => 1]);
 
         // Redirect to a page (or back) with a success message
-       return redirect('impoundings');
+        return redirect('impoundings');
     }
 
     public function update(Request $request, $id)
@@ -125,13 +126,13 @@ class VehicleImpoundingController extends Controller
             'vehicle_number' => $request->vehicle_number,
             'owner_name' => $request->owner_name,
             'date_of_impounding' => $request->date_of_impounding,
-            'reason_for_impounding' =>  json_encode($request->reason_of_impoundment),
+            'reason_for_impounding' => json_encode($request->reason_of_impoundment),
             'reason_of_impoundment_reason' => $request->reason_of_impoundment_reason,
             'fine_amount' => $request->fine_amount,
             'release_date' => $request->release_date,
             'officer_name' => $request->officer_name,
             'officer_rank' => $request->officer_rank,
-            'document_attachment' => json_encode($documentPaths), 
+            'document_attachment' => json_encode($documentPaths),
             'violation_id' => $violationsArray,  // Save violations array into this field
         ]);
 

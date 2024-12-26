@@ -8,7 +8,8 @@
     <x-slot name="btn">
         <div class="nk-block-head-content">
             <div class="toggle-wrap nk-block-tools-toggle">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#entries" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+                <a href="#" data-bs-toggle="modal" data-bs-target="#entries"
+                    class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
                         class="icon ni ni-menu-alt-r"></em></a>
                 <div class="toggle-expand-content" data-content="pageMenu">
                     <ul class="nk-block-tools g-3">
@@ -62,7 +63,7 @@
                                                     ->where('id', $violation_id)
                                                     ->first();
                                                 $check_once++;
-                                                $total_fine  += $violation->penalty;
+                                                $total_fine += $violation->penalty;
                                             }
                                         }
                                         $currentDate = new DateTime();
@@ -74,12 +75,12 @@
                                             $deadlineDate > $currentDate ? $difference->days : $difference->days;
                                     @endphp
                                     <tr style="cursor: pointer;"
-                                        onclick="view({{ $entry->id }}, '{{ $entry->plate_number }}', '{{ $entry->violator_name }}', '{{ $entry->address }}', '{{ $entry->date }}', '{{ $entry->municipal_ordinance_number }}', '{{ $entry->specific_offense }}', '{{ $entry->remarks }}', '{{ $entry->status }}')"
+                                        onclick="view({{ $entry->id }}, '{{ addslashes($entry->plate_number) }}', '{{ addslashes($entry->violator_name) }}', '{{ addslashes($entry->address) }}', '{{ $entry->date }}', '{{ $entry->municipal_ordinance_number }}', '{{ addslashes($entry->specific_offense) }}', '{{ addslashes($entry->remarks) }}', '{{ $entry->status }}')"
                                         data-bs-toggle="modal" data-bs-target="#edit">
                                         <td>{{ $index + 1 }}.</td>
                                         <td>{{ $entry->municipal_ordinance_number }}</td>
                                         <td>{{ $entry->violator_name }}</td>
-                                        <td>                                            
+                                        <td>
                                             <ul class="project-users g-1">
                                                 <li>
                                                     {{ $violation->name }}
@@ -93,7 +94,7 @@
                                                 </li>
                                             </ul>
                                         </td>
-                                        <td class="pt-2 fw-bold text-dark">₱ {{ number_format($total_fine, 2)}}</td>
+                                        <td class="pt-2 fw-bold text-dark">₱ {{ number_format($total_fine, 2) }}</td>
                                         <td>{{ $entry->plate_number }}</td>
                                         <td>{{ $entry->remarks }}</td>
                                         <td>

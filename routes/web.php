@@ -22,40 +22,41 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    Route::get('/dashboard', function () {        
+    Route::get('/dashboard', function () {
         // if(Auth::user()->account_type == 'Officer'){
         //     return redirect('/impoundings');
         // }else{
-            $citations = TrafficCitation::get();        
-            $impoundings = VehicleImpounding::get();
-            $violations = ViolationEntries::get();
-    
-            $impoundings_count = VehicleImpounding::all();
-    
-            return view('dashboard', compact('citations', 'violations', 'impoundings', 'impoundings_count'));
+        $citations = TrafficCitation::get();
+        $impoundings = VehicleImpounding::get();
+        $violations = ViolationEntries::get();
+
+        $impoundings_count = VehicleImpounding::all();
+
+        return view('dashboard', compact('citations', 'violations', 'impoundings', 'impoundings_count'));
         //}
-       
+
     });
 
-     // ** Impoundings ** //
-     Route::get('/impoundings', [VehicleImpoundingController::class, 'index']);
-     Route::get('/impoundings/print/{id}', [VehicleImpoundingController::class, 'print']);
-     Route::post('/impoundings/store', [VehicleImpoundingController::class, 'store'])->name('vehicle-impoundings.store');
-     Route::post('/impoundings/entry/remove', [VehicleImpoundingController::class, 'remove'])->name('impounding.remove');
-     Route::post('/impoundings/update/{id}', [VehicleImpoundingController::class, 'update'])->name('vehicle-impoundings.update');
+    // ** Impoundings ** //
+    Route::get('/impoundings', [VehicleImpoundingController::class, 'index']);
+    Route::get('/impoundings/print/{id}', [VehicleImpoundingController::class, 'print']);
+    Route::post('/impoundings/store', [VehicleImpoundingController::class, 'store'])->name('vehicle-impoundings.store');
+    Route::post('/impoundings/entry/remove', [VehicleImpoundingController::class, 'remove'])->name('impounding.remove');
+    Route::post('/impoundings/update/{id}', [VehicleImpoundingController::class, 'update'])->name('vehicle-impoundings.update');
 
     // ** Violations ** //
     Route::get('/violations', [ViolationController::class, 'index']);
     Route::post('/violations/entry/store', [ViolationController::class, 'store'])->name('violations.entry.store');
     Route::post('/violations/entry/remove', [ViolationController::class, 'remove'])->name('violation.entry.remove');
     Route::post('/violations/entry/update/{id}', [ViolationController::class, 'update'])->name('violation.entry.update');
-    
+
     // ** Trafic Citations ** //
     Route::get('/notification', [TrafficCitationController::class, 'notification']);
     Route::get('/citations', [TrafficCitationController::class, 'index']);
     Route::post('/citations/store', [TrafficCitationController::class, 'store'])->name('citations.store');
     Route::post('/citations/remove', [TrafficCitationController::class, 'remove'])->name('citations.remove');
     Route::post('/citations/update/{id}', [TrafficCitationController::class, 'update'])->name('citations.update');
+    Route::get('/citations/print/{id}', [TrafficCitationController::class, 'print']);
 
     Route::get('/violators', [TrafficCitationController::class, 'violators']);
     Route::get('/violators/detail/{id}', [TrafficCitationController::class, 'detail']);
@@ -75,11 +76,11 @@ Route::middleware([
     // Route::post('/projects/store', [ProjectController::class, 'store'])->name('projects.store');
     // Route::post('/projects/update', [ProjectController::class, 'update'])->name('projects.update');
 
-    // // ** Employee ** //    
+    // // ** Employee ** //
     // Route::get('/employee', [EmployeeController::class, 'index']);
     // Route::post('/employee/registration', [EmployeeController::class, 'store'])->name('employee.save');
 
-    // ** Reports ** //    
+    // ** Reports ** //
     Route::get('/generate-report', [ReportController::class, 'generate']);
     Route::get('/revenue-report', [ReportController::class, 'index']);
 
@@ -87,14 +88,14 @@ Route::middleware([
 
     //Route::get('/reports', [ReportsController::class, 'index']);
     // Route::get('/reports/print', [ReportsController::class, 'print']);
-    // Route::get('/projects/print/{id}', [ProjectController::class, 'print_checklist']);    
+    // Route::get('/projects/print/{id}', [ProjectController::class, 'print_checklist']);
 
-    // // ** Resources ** //    
+    // // ** Resources ** //
     // Route::get('/resources', [ResourcesController::class, 'index']);
     // Route::post('/resources/registration', [ResourcesController::class, 'store'])->name('resources.save');
 
-     /* Accounts */
-     Route::get('/accounts', [AccountsController::class, 'index']);
-     Route::post('/register', [AccountsController::class, 'store'])->name('register.store');
+    /* Accounts */
+    Route::get('/accounts', [AccountsController::class, 'index']);
+    Route::post('/register', [AccountsController::class, 'store'])->name('register.store');
 
 });

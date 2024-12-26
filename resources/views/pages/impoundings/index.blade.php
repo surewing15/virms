@@ -8,12 +8,14 @@
     <x-slot name="btn">
         <div class="nk-block-head-content">
             <div class="toggle-wrap nk-block-tools-toggle">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#entries" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+                <a href="#" data-bs-toggle="modal" data-bs-target="#entries"
+                    class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
                         class="icon ni ni-menu-alt-r"></em></a>
                 <div class="toggle-expand-content" data-content="pageMenu">
                     <ul class="nk-block-tools g-3">
                         <li class="nk-block-tools-opt d-none d-sm-block">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#entries" class="btn btn-danger"  onclick="remove_reset()"   >
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#entries" class="btn btn-danger"
+                                onclick="remove_reset()">
                                 <em class="icon ni ni-plus"></em>
                                 <span>Add New Record</span>
                             </a>

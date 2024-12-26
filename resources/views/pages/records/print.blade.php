@@ -83,6 +83,7 @@
     <div class="containerx my-1">
         <!-- Profile Section -->
         <div class="row mb-4">
+
             <div class="col-md-4">
                 <div class="profile-card text-center">
                     <div class="profile-img">
@@ -98,7 +99,7 @@
                         </tr>
                         <tr>
                             <th>Address :</th>
-                            <td>{{ $info->address }}</td>
+                            <td>{{ $info->address ?? 'N/A' }}</td>
                         </tr>
                     </table>
                 </div>
@@ -121,7 +122,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($min_cite as $index => $entry)
+                            @foreach ($min_cites as $index => $entry)
                                 @php
                                     $get_violations = json_decode($entry->specific_offense, true);
                                     $check_once = 0;
@@ -153,13 +154,13 @@
                                             <li>
                                                 {{ $violation->name }}
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 @if ($check_once != 1)
                                                     <div class="user-avatar bg-light sm">
                                                         <span>+{{ $check_once - 1 }}</span>
                                                     </div>
                                                 @endif
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </td>
                                     <td class="pt-2 fw-bold text-dark">₱ {{ number_format($total_fine, 2) }}</td>
@@ -251,13 +252,13 @@
                                             <li>
                                                 {{ $violation->name }}
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 @if ($check_once != 1)
                                                     <div class="user-avatar bg-light sm">
                                                         <span>+{{ $check_once - 1 }}</span>
                                                     </div>
                                                 @endif
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </td>
                                     <td class="pt-2 fw-bold text-dark">₱ {{ number_format($total_fine, 2) }}</td>

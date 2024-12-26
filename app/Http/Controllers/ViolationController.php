@@ -74,4 +74,6 @@ class ViolationController extends Controller
 
         return response()->json(['error' => 'Violation not found.'], 404);
     }
+
+
 }

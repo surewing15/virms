@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,8 @@
             margin-bottom: 10px;
         }
 
-        .form-header h3, p {
+        .form-header h3,
+        p {
             margin: 5px 0;
             font-size: 16px;
             text-transform: uppercase;
@@ -36,7 +38,8 @@
             border: 1px solid black;
         }
 
-        .custom-table th, .custom-table td {
+        .custom-table th,
+        .custom-table td {
             vertical-align: middle;
             text-align: center;
             border: 1px solid black;
@@ -71,10 +74,12 @@
                 margin: 0;
                 padding: 0;
             }
+
             .custom-table thead {
                 background-color: #004085 !important;
                 color: white !important;
-                -webkit-print-color-adjust: exact; /* Ensure color is printed */
+                -webkit-print-color-adjust: exact;
+                /* Ensure color is printed */
             }
         }
     </style>
@@ -111,6 +116,7 @@
     }
 
 @endphp
+
 <body>
 
     <!-- Header Section -->
@@ -188,4 +194,5 @@
     </div>
 
 </body>
+
 </html>

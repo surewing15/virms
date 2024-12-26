@@ -70,8 +70,8 @@
                                     }
                                 </style>
                                 {{-- <input type="text" id="autocompleteInput" placeholder="Start typing..." /> --}}
-                                <input type="text"  id="autocompleteInput" required class="form-control" name="owner_name"
-                                    placeholder="Enter (Required) Violator Name here..">
+                                <input type="text" id="autocompleteInput" required class="form-control"
+                                    name="owner_name" placeholder="Enter (Required) Violator Name here..">
 
                                 {{-- <input type="text" class="form-control" id="owner_name" name="owner_name"
                                     placeholder="Enter owner name" required> --}}
@@ -275,8 +275,8 @@
 
 
                     <div class="mb-3">
-                        <input class="form-control" rows="2" name="reason_of_impoundment_reason" id="reason_of_impoundment_reason"
-                            placeholder="Specify reason if OTHER">
+                        <input class="form-control" rows="2" name="reason_of_impoundment_reason"
+                            id="reason_of_impoundment_reason" placeholder="Specify reason if OTHER">
                     </div>
                     <div class="mb-3" style="display: none">
                         <label for="incident_address" class="form-label">Incident Location / Address</label>
@@ -360,13 +360,15 @@
                     <!-- Release Date -->
 
                     <div class="row mt-2 align-center" style="display: none">
-                        <div class="col-lg-4" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-4"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-group">
                                 <label class="form-label" for="officer_name">Officer Name</label>
                                 <span class="form-note">Specify the officer name (optional).</span>
                             </div>
                         </div>
-                        <div class="col-lg-8" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-8"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" id="officer_name" name="officer_name">
                             </div>
@@ -374,13 +376,15 @@
                     </div>
 
                     <div class="row mt-2 align-center" style="display: none">
-                        <div class="col-lg-4" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-4"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-group">
                                 <label class="form-label" for="officer_rank">Officer Rank</label>
                                 <span class="form-note">Specify the officer rank (optional).</span>
                             </div>
                         </div>
-                        <div class="col-lg-8" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-8"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control" id="officer_rank" name="officer_rank">
                             </div>
@@ -389,13 +393,15 @@
 
 
                     <div class="row mt-2 align-center" style="display: none">
-                        <div class="col-lg-4" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-4"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-group">
                                 <label class="form-label" for="release_date">Release Date</label>
                                 <span class="form-note">Specify the release date (optional).</span>
                             </div>
                         </div>
-                        <div class="col-lg-8" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-8"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-control-wrap">
                                 <input type="date" class="form-control" id="release_date" name="release_date">
                             </div>
@@ -403,13 +409,15 @@
                     </div>
 
                     <div class="row mt-2 align-center">
-                        <div class="col-lg-4" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-4"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-group">
                                 <label class="form-label" for="document_attachment">Supporting Documents</label>
                                 <span class="form-note">Attach supporting documents (optional).</span>
                             </div>
                         </div>
-                        <div class="col-lg-8" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                        <div class="col-lg-8"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-control-wrap">
                                 <input type="file" class="form-control" id="document_attachment"
                                     name="document_attachment[]" multiple>
@@ -417,8 +425,10 @@
                         </div>
                     </div>
 
-                    <div class="row mt-2 align-center"  style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
-                        <div class="col-lg-12" style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block'}}">
+                    <div class="row mt-2 align-center"
+                        style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
+                        <div class="col-lg-12"
+                            style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <hr class="mt-4 mb-4">
                         </div>
                     </div>
@@ -447,11 +457,13 @@
                     <div class="col-lg-4"></div>
                     <div class="col-lg-8" style="float: right">
                         <div class="form-group mt-2 mb-2 justify-end">
-                            <button onclick="remove()" style="display: none;" id="remove" type="button"
-                                class="btn btn-danger">
-                                <em class="icon ni ni-trash"></em>
-                                &ensp;Remove
-                            </button>&ensp;&ensp;
+                            @if (Auth::user()->account_type == 'Administrator')
+                                <button onclick="remove()" id="remove" type="button" class="btn btn-danger"
+                                    style="display: none;">
+                                    <em class="icon ni ni-trash"></em>
+                                    &ensp;Remove
+                                </button>&ensp;&ensp;
+                            @endif
                             <input type="hidden" id="id_x">
                             <button type="button"
                                 onclick="go_to('/impoundings/print/' + document.getElementById('id_x').value )"
@@ -482,7 +494,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 
 <script>
-   $(document).ready(function () {
+    $(document).ready(function() {
         // Fetch data from Laravel
         const records = [
             @foreach (App\Models\TrafficCitation::select('violator_name')->distinct()->get() as $data)
@@ -495,14 +507,14 @@
             source: records,
             minLength: 0, // Show dropdown on focus
             autoFocus: true,
-            open: function () {
+            open: function() {
                 // Force the dropdown to appear correctly in modal
                 $(".ui-autocomplete").css({
                     "z-index": 1051,
                     "width": $(this).outerWidth() + "px"
                 });
             }
-        }).focus(function () {
+        }).focus(function() {
             // Trigger dropdown when the input is focused
             $(this).autocomplete("search", "");
         });
@@ -516,34 +528,107 @@
     }
 </style>
 
+
 <script>
+    $(document).ready(function() {
+        // Create mapping of violator data
+        const violatorData = {
+            @foreach (App\Models\TrafficCitation::select('violator_name', 'address', 'plate_number', 'specific_offense')->distinct()->get() as $data)
+                "{{ $data->violator_name }}": {
+                    address: "{{ $data->address }}",
+                    plate_number: "{{ $data->plate_number }}",
+                    violations: {!! $data->specific_offense !!}
+                },
+            @endforeach
+        };
+
+        // Function to fill details
+        function fillViolatorDetails(violatorName) {
+            const data = violatorData[violatorName];
+            if (data) {
+                $("#autocompleteInput").val(violatorName);
+                $("#address").val(data.address);
+                $("#vehicle_number").val(data.plate_number);
+
+                if (data.violations) {
+                    const selectBox = document.getElementById('violation_id');
+                    const violations = JSON.parse(data.violations);
+
+                    for (let i = 0; i < selectBox.options.length; i++) {
+                        selectBox.options[i].selected = violations.includes(selectBox.options[i].value);
+                    }
+                    $('#violation_id').trigger('change');
+                    updateTotal();
+                }
+            }
+        }
+
+        // Enhanced autocomplete with fixed menu hiding
+        $("#autocompleteInput").autocomplete({
+            source: Object.keys(violatorData),
+            minLength: 1,
+            autoFocus: true,
+            select: function(event, ui) {
+                event.preventDefault(); // Prevent default behavior
+                fillViolatorDetails(ui.item.value);
+                $(this).val(ui.item.value); // Set the value manually
+                $(this).autocomplete("close"); // Force close the menu
+            },
+            close: function(event, ui) {
+                // Additional cleanup if needed
+                $(this).blur(); // Remove focus
+            }
+        }).on('focus', function() {
+            // Clear any existing menu
+            $(this).autocomplete("close");
+        });
+
+        // Similarly enhance plate number autocomplete
+        $("#vehicle_number").autocomplete({
+            source: Object.keys(plateData),
+            minLength: 1,
+            autoFocus: true,
+            select: function(event, ui) {
+                event.preventDefault();
+                fillPlateDetails(ui.item.value);
+                $(this).val(ui.item.value);
+                $(this).autocomplete("close");
+            },
+            close: function(event, ui) {
+                $(this).blur();
+            }
+        }).on('focus', function() {
+            $(this).autocomplete("close");
+        });
+
+        // Make sure dropdown properly closes on outside clicks
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('.ui-autocomplete, #autocompleteInput, #vehicle_number')
+                .length) {
+                $("#autocompleteInput").autocomplete("close");
+                $("#vehicle_number").autocomplete("close");
+            }
+        });
+    });
+
     function updateTotal() {
-        // Get all selected options
         let selectedOptions = document.querySelectorAll('#violation_id option:checked');
         let totalAmount = 0;
 
         selectedOptions.forEach(option => {
-            // Extract text inside the option
             let text = option.textContent;
-
-            // Use regex to extract the amount (like ₱ 1,000.00)
             let match = text.match(/₱\s*([0-9,]+\.\d{2})/);
 
             if (match) {
-                // Remove commas from the extracted amount and convert to float
                 let amount = parseFloat(match[1].replace(/,/g, ''));
                 totalAmount += amount;
             }
         });
 
-        // Update the totalPenalty span with the formatted total amount (with commas)
         document.getElementById('totalPenalty').textContent = totalAmount.toLocaleString('en', {
             minimumFractionDigits: 2
         });
     }
-
-
-    var default_id = 0;
 
     function remove_reset() {
         document.getElementById('reset').style.display = 'block';
@@ -556,200 +641,184 @@
 
         document.getElementById('id_x').value = id;
 
+        // Handle file attachments
         const filesArray = typeof files === 'string' ? JSON.parse(files) : files;
         const documentsArray = typeof documents === 'string' ? JSON.parse(documents) : documents;
 
-        // Reference the container
+        // Handle files display
         const container = document.getElementById('file-container');
-
-        // Clear previous content in the container (if needed)
         container.innerHTML = '';
 
-        // Create a <table> element with Bootstrap classes
         const table = document.createElement('table');
-        table.className = 'table table-bordered'; // Apply Bootstrap table classes
+        table.className = 'table table-bordered';
 
-        // Create a table header
         const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        const nameHeader = document.createElement('th');
-        nameHeader.textContent = 'Attached Images';
-        const linkHeader = document.createElement('th');
-        linkHeader.textContent = 'Action';
-        headerRow.appendChild(nameHeader);
-        headerRow.appendChild(linkHeader);
-        thead.appendChild(headerRow);
+        thead.innerHTML = '<tr><th>Attached Images</th><th>Action</th></tr>';
         table.appendChild(thead);
 
-        // Create a table body
         const tbody = document.createElement('tbody');
-
-        // Iterate through the filesArray and create rows
         filesArray.forEach(file => {
-            const row = document.createElement('tr');
-
-            // File name cell
-            const nameCell = document.createElement('td');
-            nameCell.textContent = file;
-
-            // Action cell with a link
-            const linkCell = document.createElement('td');
-            const link = document.createElement('a');
-            link.href = '/storage/' + file; // Set the file path as the href
-            link.textContent = 'View'; // Display "Open" as the link text
-            link.target = '_blank'; // Open the link in a new tab
-            linkCell.appendChild(link);
-
-            // Append cells to the row
-            row.appendChild(nameCell);
-            row.appendChild(linkCell);
-
-            // Append the row to the table body
-            tbody.appendChild(row);
+            tbody.innerHTML += `
+        <tr>
+            <td>${file}</td>
+            <td><a href="/storage/${file}" target="_blank">View</a></td>
+        </tr>
+    `;
         });
-
-        // Append the table body to the table
         table.appendChild(tbody);
-
-        // Append the table to the container
         container.appendChild(table);
 
-        const container_docs = document.getElementById('documents');
+        // Handle documents display
+        const docs_container = document.getElementById('documents');
+        docs_container.innerHTML = '';
 
-        // Clear any existing content
-        container_docs.innerHTML = '';
+        if (documentsArray && documentsArray.length > 0) {
+            const docs_table = document.createElement('table');
+            docs_table.className = 'table table-bordered';
 
-        const table_docs = document.createElement('table');
-        table_docs.className = 'table table-bordered'; // Bootstrap styling
+            const docs_thead = document.createElement('thead');
+            docs_thead.innerHTML = '<tr><th>Documents</th><th>Action</th></tr>';
+            docs_table.appendChild(docs_thead);
 
-        // Add table header
-        const thead_docs = document.createElement('thead');
-        thead_docs.innerHTML = `
-        <tr>
-            <th>Attached Images</th>
-            <th>Action</th>
-        </tr>`;
-        table_docs.appendChild(thead);
+            const docs_tbody = document.createElement('tbody');
+            documentsArray.forEach(doc => {
+                docs_tbody.innerHTML += `
+            <tr>
+                <td>${doc}</td>
+                <td><a href="/storage/${doc}" target="_blank">View</a></td>
+            </tr>
+        `;
+            });
+            docs_table.appendChild(docs_tbody);
+            docs_container.appendChild(docs_table);
+        }
 
-        const tbody_docs = document.createElement('tbody');
-
-        // Populate rows with files
-        documentsArray.forEach(file => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-        <td>${file}</td>
-        <td><a href="/storage/${file}" target="_blank">View</a></td>`;
-            tbody_docs.appendChild(row);
-        });
-
-        table_docs.appendChild(tbody_docs);
-        container.appendChild(table_docs);
-
-
+        // Update UI elements
         document.getElementById('reset').style.display = 'none';
-        document.getElementById('remove').style.display = 'block';
+
+        // Show remove button only for Administrator
+        const removeButton = document.getElementById('remove');
+        if (removeButton) {
+            removeButton.style.display = '{{ Auth::user()->account_type }}' === 'Administrator' ? 'block' : 'none';
+        }
 
         const title = document.getElementById('modal-title-label');
         const sub_title = document.getElementById('modal-sub-label');
-
-        // Get input elements for each field
-        const text_violator_name = document.getElementById('owner_name');
-        const text_vehicle_type = document.getElementById('vehicle_type');
-        const text_plate_number = document.getElementById('vehicle_number');
-
-        const text_date_impound = document.getElementById('date_of_impounding');
-        const text_reason_impound = document.getElementById('reason_for_impounding');
-        const text_add_fine = document.getElementById('fine_amount');
-        const text_date_release = document.getElementById('release_date');
-
-        const t_license_no = document.getElementById('license_no');
-        const t_address = document.getElementById('address');
-        const t_birthdate = document.getElementById('birthdate');
-        const t_phone = document.getElementById('phone');
-        const t_reason_of_impoundment = document.getElementById('reason_of_impoundment');
-        const t_reason_of_impoundment_reason = document.getElementById('reason_of_impoundment_reason');
-        const t_ncident_address = document.getElementById('incident_location');
-        const t_condition_x = document.getElementById('condition_x');
-
-        const t_officer_name = document.getElementById('officer_name');
-        const t_officer_rank = document.getElementById('officer_rank');
-
-        // 'license_no',
-        // 'address',
-        // 'birthdate',
-        // 'phone',
-        // 'reason_of_impoundment',
-        // 'reason_of_impoundment_reason',
-        // 'incident_address',
-        // 'condition_x',
-
-        // Set modal title
         title.innerHTML = `${vehicle}`;
-        sub_title.innerHTML = `update`;
+        sub_title.innerHTML = 'update';
 
-        t_officer_name.value = officer_name;
-        t_officer_rank.value = officer_rank;
+        // Fill form fields
+        document.getElementById('autocompleteInput').value = owner;
+        document.getElementById('vehicle_type').value = vehicle;
+        document.getElementById('vehicle_number').value = vnumber;
+        document.getElementById('license_no').value = license_no;
+        document.getElementById('address').value = address;
+        document.getElementById('birthdate').value = birthdate;
+        document.getElementById('phone').value = phone;
+        document.getElementById('reason_of_impoundment_reason').value = reason_of_impoundment_reason;
+        document.getElementById('incident_location').value = incident_address;
+        document.getElementById('condition_x').value = condition_x;
+        document.getElementById('date_of_impounding').value = impound;
+        document.getElementById('reason_for_impounding').value = reason;
+        document.getElementById('fine_amount').value = storage_fee;
+        document.getElementById('release_date').value = release;
+        document.getElementById('officer_name').value = officer_name;
+        document.getElementById('officer_rank').value = officer_rank;
 
-        // Set the values of the form inputs
-        text_violator_name.value = owner;
-        text_vehicle_type.value = vehicle;
-        text_plate_number.value = vnumber;
-        //text_violations.innerHTML = violations;
-        text_date_impound.value = impound;
-        text_reason_impound.value = reason;
-        text_add_fine.value = storage_fee;
-        text_date_release.value = release;
+        // Handle violations
+        const violationsArray = JSON.parse(violations);
+        const selectBox = document.getElementById('violation_id');
+        for (let i = 0; i < selectBox.options.length; i++) {
+            selectBox.options[i].selected = violationsArray.includes(selectBox.options[i].value);
+        }
 
-        t_license_no.value = license_no;
-        t_address.value = address;
-        t_birthdate.value = birthdate;
-        t_phone.value = phone;
-        //t_reason_of_impoundment.value = reason_of_impoundment;
-        t_reason_of_impoundment_reason.value = reason_of_impoundment_reason;
-        t_ncident_address.value = incident_address;
-        t_condition_x.value = condition_x;
+        // Handle reason checkboxes
+        document.querySelectorAll('input[name="reason_of_impoundment[]"]').forEach(checkbox => {
+            checkbox.checked = reason.includes(checkbox.value);
+        });
 
-        // Update the form's action attribute for submitting the changes
+        // Update Select2 and total
+        $('#violation_id').trigger('change');
+        updateTotal();
+
+        // Update form action
         var form = document.querySelector('#entries form');
         form.action = `/impoundings/update/${id}`;
 
-        // Store the default ID if needed for further logic
-        //console.log(violations)
-
-        // Assuming `violations` is a JSON string, first parse it
-        // Assuming `violations` is a JSON string, parse it into an array
-        const violationsArray = JSON.parse(violations);
-
-        // Reference the actual select box element by its ID 'violation_id'
-        const selectBox = document.getElementById('violation_id');
-
-        // Loop through the select box options
-        for (let i = 0; i < selectBox.options.length; i++) {
-            // Check if the option value exists in the violationsArray
-            if (violationsArray.includes(selectBox.options[i].value)) {
-                selectBox.options[i].selected = true; // Mark as selected
-            } else {
-                selectBox.options[i].selected = false; // Deselect if not in violationsArray
-            }
-        }
-
-        document.querySelectorAll('input[name="reason_of_impoundment[]"]').forEach(checkbox => {
-            checkbox.checked = false; // Clear all selections
-        });
-
-        // Apply the selected values
-        document.querySelectorAll('input[name="reason_of_impoundment[]"]').forEach(checkbox => {
-            // Check if the checkbox value is in the selectedValues array
-            if (reason.includes(checkbox.value)) {
-                checkbox.checked = true; // Mark as checked
-            }
-        });
-
-        // Trigger change event to refresh Select2 UI
-        $('#violation_id').trigger('change');
-
         default_id = id;
     }
+
+    function clearFormFields() {
+        // Reset all form inputs
+        $("#autocompleteInput").val('');
+        $("#license_no").val('');
+        $("#address").val('');
+        $("#birthdate").val('');
+        $("#phone").val('');
+        $("#vehicle_type").val('');
+        $("#vehicle_number").val('');
+
+        // Reset violation select and total
+        $("#violation_id").val(null).trigger('change');
+        $("#totalPenalty").text('0.00');
+
+        // Reset date to current date
+        $("#date_of_impounding").val(new Date().toISOString().split('T')[0]);
+
+        // Uncheck all checkboxes
+        $('input[type="checkbox"]').prop('checked', false);
+
+        // Clear other fields
+        $("#reason_of_impoundment_reason").val('');
+        $("#incident_location").val('');
+        $("#reason_for_impounding").val('');
+        $("#fine_amount").val('');
+        $("#officer_name").val('');
+        $("#officer_rank").val('');
+        $("#release_date").val('');
+
+        // Clear file inputs
+        $("#photo_attachment").val('');
+        $("#document_attachment").val('');
+
+        // Clear file containers
+        $("#file-container").empty();
+        $("#documents").empty();
+
+        // Reset form action to store route
+        $('form').attr('action', '{{ route('vehicle-impoundings.store') }}');
+
+        // Reset modal title
+        $("#modal-title-label").text('Add New Vehicle Impound');
+        $("#modal-sub-label").text('add');
+
+        // Hide remove button, show reset button
+        $("#remove").hide();
+        $("#reset").show();
+
+        // Reset any validation states
+        $('.is-invalid').removeClass('is-invalid');
+    }
+
+    // Modify the existing remove_reset function
+    function remove_reset() {
+        clearFormFields();
+    }
+
+    // Add event listener for modal show
+    $(document).ready(function() {
+        $('#entries').on('show.bs.modal', function(e) {
+            // Check if modal is being opened via Add New Record button
+            if ($(e.relatedTarget).hasClass('btn-danger')) {
+                clearFormFields();
+            }
+        });
+
+        // Handle reset button click
+        $('#reset').on('click', function() {
+            clearFormFields();
+        });
+    });
 
     function remove() {
         Swal.fire({
@@ -767,7 +836,7 @@
                     type: 'POST',
                     data: {
                         id: default_id,
-                        _token: "{{ csrf_token() }}" // Pass the CSRF token here
+                        _token: "{{ csrf_token() }}"
                     },
                     success: function(response) {
                         Swal.fire({
@@ -791,3 +860,27 @@
         });
     }
 </script>
+
+<style>
+    .ui-autocomplete {
+        z-index: 1051 !important;
+        max-height: 150px;
+        overflow-y: auto;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .ui-menu-item {
+        padding: 8px 10px;
+        cursor: pointer;
+    }
+
+    .ui-menu-item:hover {
+        background-color: #f0f0f0;
+    }
+
+    li {
+        color: #000;
+    }
+</style>
