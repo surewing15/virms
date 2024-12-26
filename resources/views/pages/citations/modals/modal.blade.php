@@ -1,27 +1,3 @@
-{{-- modal --}}
-
-<style>
-    /* Fix Autocomplete Dropdown in Modal */
-    .ui-autocomplete {
-        z-index: 1051 !important;
-        /* Ensure it is above Bootstrap's modal z-index */
-        max-height: 150px;
-        overflow-y: auto;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        font-size: 14px;
-    }
-
-    .ui-menu-item {
-        padding: 8px 10px;
-        cursor: pointer;
-    }
-
-    .ui-menu-item:hover {
-        background-color: #f0f0f0;
-    }
-</style>
-
 <div class="modal fade" tabindex="-1" role="dialog" id="entries">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -37,7 +13,6 @@
 
                 <form action="{{ route('citations.store') }}" method="POST" autocomplete="off">
                     @csrf
-
                     <div class="row mt-2 align-center">
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -51,8 +26,8 @@
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-info"></em>
                                     </div>
-                                    <input type="text" id="plate_number" required class="form-control"
-                                        name="plate_number" placeholder="Enter (Required) Plate Number here..">
+                                    <input type="text" required class="form-control" name="plate_number"
+                                        placeholder="Enter (Required) Plate Number here..">
                                 </div>
                             </div>
                         </div>
@@ -72,6 +47,27 @@
                                         <em class="icon ni ni-info"></em>
                                     </div>
 
+                                    <style>
+                                        /* Fix Autocomplete Dropdown in Modal */
+                                        .ui-autocomplete {
+                                            z-index: 1051 !important;
+                                            /* Ensure it is above Bootstrap's modal z-index */
+                                            max-height: 150px;
+                                            overflow-y: auto;
+                                            background-color: #ffffff;
+                                            border: 1px solid #ccc;
+                                            font-size: 14px;
+                                        }
+
+                                        .ui-menu-item {
+                                            padding: 8px 10px;
+                                            cursor: pointer;
+                                        }
+
+                                        .ui-menu-item:hover {
+                                            background-color: #f0f0f0;
+                                        }
+                                    </style>
                                     {{-- <input type="text" id="autocompleteInput" placeholder="Start typing..." /> --}}
                                     <input type="text" id="autocompleteInput" required class="form-control"
                                         name="violator_name" placeholder="Enter (Required) Violator Name here..">
@@ -94,7 +90,7 @@
                                         <em class="icon ni ni-info"></em>
                                     </div>
                                     <input type="text" required class="form-control" name="address"
-                                        id="violatorAddress" placeholder="Enter (Required) Address here..">
+                                        placeholder="Enter (Required) Address here..">
                                 </div>
                             </div>
                         </div>
@@ -297,9 +293,8 @@
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-info"></em>
                                     </div>
-                                    <input type="text" id="plate_number_edit" required class="form-control"
+                                    <input type="text" id="plate_number" required class="form-control"
                                         name="plate_number" placeholder="Enter (Required) Plate Number here..">
-
                                 </div>
                             </div>
                         </div>
@@ -479,18 +474,18 @@
                         <div class="form-group mt-2 mb-2 justify-end">
                             <input type="hidden" id="id_x">
                             <button type="button"
-                                onclick="go_to('/citations/print/' + document.getElementById('id_x').value )"
+                                onclick="go_to('/violators/print/' + document.getElementById('id_x').value )"
                                 class="btn btn-primary">
                                 <em class="icon ni ni-printer"></em>
                                 &ensp;Print
                             </button>&ensp;
+                            <button type="button"
+                                onclick="go_to('/violators/impound/' + document.getElementById('id_x').value )"
+                                class="btn btn-warning">
+                                <em class="icon ni ni-truck"></em>
+                                &ensp;Impound
+                            </button>&ensp;
                             @if (Auth::user()->account_type != 'Officer')
-                                <button type="button"
-                                    onclick="go_to('/violators/impound/' + document.getElementById('id_x').value )"
-                                    class="btn btn-warning">
-                                    <em class="icon ni ni-truck"></em>
-                                    &ensp;Impound
-                                </button>&ensp;
                                 <button onclick="remove()" type="button" class="btn btn-danger">
                                     <em class="icon ni ni-trash"></em>
                                     &ensp;Remove
@@ -516,72 +511,29 @@
 
 <script>
     $(document).ready(function() {
-        // Create a mapping of violator names to their addresses
-        const violatorData = {
-            @foreach (App\Models\TrafficCitation::select('violator_name', 'address')->distinct()->get() as $data)
-                "{{ $data->violator_name }}": "{{ $data->address }}",
+        // Fetch data from Laravel
+        const records = [
+            @foreach (App\Models\TrafficCitation::select('violator_name')->distinct()->get() as $data)
+                "{{ $data->violator_name }}",
             @endforeach
-        };
+        ];
 
-        // Initialize autocomplete with modified select event
+        // Autocomplete initialization
         $("#autocompleteInput").autocomplete({
-            source: Object.keys(violatorData),
-            minLength: 1,
+            source: records,
+            minLength: 0, // Show dropdown on focus
             autoFocus: true,
-            select: function(event, ui) {
-                // When a name is selected, populate the address field
-                $("#violatorAddress").val(violatorData[ui.item.value]);
-            },
             open: function() {
+                // Force the dropdown to appear correctly in modal
                 $(".ui-autocomplete").css({
                     "z-index": 1051,
                     "width": $(this).outerWidth() + "px"
                 });
             }
         }).focus(function() {
+            // Trigger dropdown when the input is focused
             $(this).autocomplete("search", "");
         });
-
-        // Also update address when input changes without selection
-        $("#autocompleteInput").on('change', function() {
-            const selectedName = $(this).val();
-            if (violatorData[selectedName]) {
-                $("#violatorAddress").val(violatorData[selectedName]);
-            }
-        });
-    });
-
-
-    const plateRecords = [
-        @foreach (App\Models\TrafficCitation::select('plate_number')->distinct()->get() as $data)
-            "{{ $data->plate_number }}",
-        @endforeach
-    ];
-
-    // Function to initialize autocomplete
-    function initializePlateAutocomplete(selector) {
-        $(selector).autocomplete({
-            source: plateRecords,
-            minLength: 1,
-            autoFocus: true,
-            open: function() {
-                $(".ui-autocomplete").css({
-                    "z-index": 1051,
-                    "width": $(this).outerWidth() + "px"
-                });
-            }
-        }).focus(function() {
-            $(this).autocomplete("search", "");
-        });
-    }
-
-    // Initialize for both plate number inputs
-    initializePlateAutocomplete("#plate_number"); // For edit modal
-    initializePlateAutocomplete("input[name='plate_number']"); // For add modal
-
-    // Re-initialize when modal opens to ensure it works
-    $('#entries').on('shown.bs.modal', function() {
-        initializePlateAutocomplete("input[name='plate_number']");
     });
 </script>
 
@@ -641,27 +593,18 @@
     function view(id, plate_number, violator_name, address, date, municipal_ordinance_number, specific_offense,
         remarks, status) {
 
-
         const title = document.getElementById('modal-title-label');
 
         // Get input elements for each field
-        const currentDate = new Date();
-        const year = currentDate.getFullYear(); // Get the current year
-        const month = String(currentDate.getMonth() + 1).padStart(2,
-            '0'); // Get the current month (0-indexed, so add 1) and pad to 2 digits
-        document.getElementById('ticket_number').value = `${year}${month}${id}`;
-
+        document.getElementById('ticket_number').value = Number(id) + 1000000;
         document.getElementById('id_x').value = id;
 
-        const text_plate_number = document.getElementById('plate_number_edit');
-
-
+        const text_plate_number = document.getElementById('plate_number');
         const text_violator_name = document.getElementById('violator_name');
-
         const text_address = document.getElementById('address');
         const text_date = document.getElementById('date');
         const text_municipal_ordinance_number = document.getElementById('municipal_ordinance_number');
-        // const text_specific_offense = document.getElementById('specific_offense');
+        //const text_specific_offense = document.getElementById('specific_offense');
         const text_remarks = document.getElementById('remarks');
         const text_status = document.getElementById('inp_status_edit');
 
@@ -703,12 +646,6 @@
         default_id = id;
     }
 
-
-
-
-
-
-
     function remove() {
         Swal.fire({
             title: "Are you sure?",
@@ -747,35 +684,5 @@
                 });
             }
         });
-    }
-
-    function printCitation(id) {
-        // First fetch the data
-        $.ajax({
-            url: `/citations/print/${id}`,
-            method: 'GET',
-            success: function(response) {
-                // Create a new window for printing
-                let printWindow = window.open('', '_blank');
-                printWindow.document.write(response);
-
-                // Wait for resources to load
-                printWindow.document.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(() => {
-                        printWindow.print();
-                        // Optional: close the window after printing
-                        // printWindow.close();
-                    }, 500);
-                });
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Failed to load print data.",
-                    icon: "error"
-                });
-            }
-        });
-
     }
 </script>

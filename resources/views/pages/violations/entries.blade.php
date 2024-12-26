@@ -1,26 +1,27 @@
-
 <x-app-layout>
     <x-slot name="back"></x-slot>
     <x-slot name="header">{{ __('Manage Violation Entries') }}</x-slot>
     <x-slot name="subHeader">{{ __('You can manage your violetion entries and register new entry here.') }}</x-slot>
     <x-slot name="btn">
-        @if(Auth::user()->account_type != 'Officer')
-        <div class="nk-block-head-content">
-            <div class="toggle-wrap nk-block-tools-toggle">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#entries" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
-                    class="icon ni ni-menu-alt-r"></em></a>
-                <div class="toggle-expand-content" data-content="pageMenu">
-                    <ul class="nk-block-tools g-3">
-                        <li class="nk-block-tools-opt d-none d-sm-block">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#entries" class="btn btn-primary">
-                                <em class="icon ni ni-plus"></em>
-                                <span>Add New</span>
-                            </a>
-                        </li>
-                    </ul>
+        @if (Auth::user()->account_type != 'Officer')
+            <div class="nk-block-head-content">
+                <div class="toggle-wrap nk-block-tools-toggle">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#entries"
+                        class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+                            class="icon ni ni-menu-alt-r"></em></a>
+                    <div class="toggle-expand-content" data-content="pageMenu">
+                        <ul class="nk-block-tools g-3">
+                            <li class="nk-block-tools-opt d-none d-sm-block">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#entries"
+                                    class="btn btn-primary">
+                                    <em class="icon ni ni-plus"></em>
+                                    <span>Add New</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
     </x-slot>
 
@@ -34,7 +35,7 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                       <table class="datatable-init table table-hover">
+                        <table class="datatable-init table table-hover">
                             <thead>
                                 <th width="50">#</th>
                                 <th>Violation</th>
@@ -45,12 +46,14 @@
                             </thead>
                             <tbody>
                                 @foreach ($violations as $index => $entry)
-                                    <tr style="cursor: pointer;" onclick="view({{ $entry->id }}, '{{ $entry->violation }}', '{{ $entry->penalty }}')" data-bs-toggle="modal" data-bs-target="#edit">
+                                    <tr style="cursor: pointer;"
+                                        onclick="view({{ $entry->id }}, '{{ $entry->violation }}', '{{ $entry->penalty }}')"
+                                        data-bs-toggle="modal" data-bs-target="#edit">
                                         <td>{{ $index + 1 }}.</td>
                                         <td>{{ $entry->violation }}</td>
-                                        <td>₱ {{ number_format($entry->penalty , 2) }}</td>
-                                        <td>{{ date_format($entry->created_at , 'D, M. d, Y h:i A')}}</td>
-                                        <td>{{ date_format($entry->updated_at , 'D, M. d, Y h:i A')}}</td>
+                                        <td>₱ {{ number_format($entry->penalty, 2) }}</td>
+                                        <td>{{ date_format($entry->created_at, 'D, M. d, Y h:i A') }}</td>
+                                        <td>{{ date_format($entry->updated_at, 'D, M. d, Y h:i A') }}</td>
                                         <td>
                                             <button class="btn btn-block btn-xs btn-light btn-white text-dark">
                                                 <em class="icon ni ni-edit"></em>
@@ -59,7 +62,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                       </table>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -547,13 +547,13 @@
                                     <em class="icon ni ni-printer"></em>
                                     &ensp;Print
                                 </button>&ensp;
+                                <button type="button"
+                                    onclick="go_to('/violators/impound/' + document.getElementById('id_x').value )"
+                                    class="btn btn-warning">
+                                    <em class="icon ni ni-truck"></em>
+                                    &ensp;Impound
+                                </button>&ensp;
                                 @if (Auth::user()->account_type != 'Officer')
-                                    <button type="button"
-                                        onclick="go_to('/violators/impound/' + document.getElementById('id_x').value )"
-                                        class="btn btn-warning">
-                                        <em class="icon ni ni-truck"></em>
-                                        &ensp;Impound
-                                    </button>&ensp;
                                     <button onclick="remove()" type="button" class="btn btn-danger">
                                         <em class="icon ni ni-trash"></em>
                                         &ensp;Remove
