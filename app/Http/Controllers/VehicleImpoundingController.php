@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\VehicleImpounding;
 use App\Models\ViolationEntries;
 use App\Models\TrafficCitation;
@@ -87,6 +88,62 @@ class VehicleImpoundingController extends Controller
 
         TrafficCitation::where('id', $request->id_x)->update(['moved_status' => null]);
         TrafficCitation::where('id', $request->id_x)->update(['moved_status' => 1]);
+        if ($request->release_date) {
+            try {
+                // Get all citations for this violator
+                $citations = DB::table('t_traffic_citations')
+                    ->where('violator_name', $request->owner_name)
+                    ->where(function ($q) {
+                        $q->where('status', '!=', 'paid')
+                            ->orWhereNull('status');
+                    })
+                    ->get();
+
+                // Track how many we update
+                $updateCount = 0;
+
+                // Clean up the violation IDs we're checking
+                $releaseViolations = $this->sanitizeViolations($request->violation_id);
+
+                foreach ($citations as $citation) {
+                    $citationViolations = json_decode($citation->specific_offense, true);
+                    if (!is_array($citationViolations)) {
+                        continue;
+                    }
+
+                    // Clean up citation violations
+                    $citationViolations = $this->sanitizeViolations($citationViolations);
+
+                    // Check if any violations match
+                    $hasMatch = !empty(array_intersect($releaseViolations, $citationViolations));
+
+                    if ($hasMatch) {
+                        // Update this citation
+                        DB::table('t_traffic_citations')
+                            ->where('id', $citation->id)
+                            ->update([
+                                'status' => 'paid',
+                                'updated_at' => now()
+                            ]);
+                        $updateCount++;
+                    }
+                }
+
+                // Log the results for debugging
+                Log::info('Citation Update Results', [
+                    'violator' => $request->owner_name,
+                    'release_violations' => $releaseViolations,
+                    'citations_found' => $citations->count(),
+                    'citations_updated' => $updateCount
+                ]);
+
+            } catch (\Exception $e) {
+                Log::error('Failed to update citations', [
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+            }
+        }
 
         // Redirect to a page (or back) with a success message
         return redirect('impoundings');
@@ -112,6 +169,7 @@ class VehicleImpoundingController extends Controller
 
         // Find the existing vehicle impounding record by ID
         $vehicleImpounding = VehicleImpounding::findOrFail($id);
+        $oldReleaseDate = $vehicleImpounding->release_date;
 
         $documentPaths = [];
         if ($request->hasFile('document_attachment')) {
@@ -135,9 +193,71 @@ class VehicleImpoundingController extends Controller
             'document_attachment' => json_encode($documentPaths),
             'violation_id' => $violationsArray,  // Save violations array into this field
         ]);
+        if ($request->release_date) {
+            try {
+                // Get all citations for this violator
+                $citations = DB::table('t_traffic_citations')
+                    ->where('violator_name', $request->owner_name)
+                    ->where(function ($q) {
+                        $q->where('status', '!=', 'paid')
+                            ->orWhereNull('status');
+                    })
+                    ->get();
 
+                // Track how many we update
+                $updateCount = 0;
+
+                // Clean up the violation IDs we're checking
+                $releaseViolations = $this->sanitizeViolations($request->violation_id);
+
+                foreach ($citations as $citation) {
+                    $citationViolations = json_decode($citation->specific_offense, true);
+                    if (!is_array($citationViolations)) {
+                        continue;
+                    }
+
+                    // Clean up citation violations
+                    $citationViolations = $this->sanitizeViolations($citationViolations);
+
+                    // Check if any violations match
+                    $hasMatch = !empty(array_intersect($releaseViolations, $citationViolations));
+
+                    if ($hasMatch) {
+                        // Update this citation
+                        DB::table('t_traffic_citations')
+                            ->where('id', $citation->id)
+                            ->update([
+                                'status' => 'paid',
+                                'updated_at' => now()
+                            ]);
+                        $updateCount++;
+                    }
+                }
+
+                // Log the results for debugging
+                Log::info('Citation Update Results', [
+                    'violator' => $request->owner_name,
+                    'release_violations' => $releaseViolations,
+                    'citations_found' => $citations->count(),
+                    'citations_updated' => $updateCount
+                ]);
+
+            } catch (\Exception $e) {
+                Log::error('Failed to update citations', [
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+            }
+        }
         // Redirect to a page (or back) with a success message
         return redirect()->back()->with('success', 'Vehicle impounding record updated successfully!');
+    }
+    private function sanitizeViolations($violations)
+    {
+        // Ensure all violation IDs are strings
+        return array_map(function ($v) {
+            return (string) $v;
+        }, $violations);
     }
 
     public function remove(Request $request)

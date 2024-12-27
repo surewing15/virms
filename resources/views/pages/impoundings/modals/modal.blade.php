@@ -392,12 +392,12 @@
                     </div>
 
 
-                    <div class="row mt-2 align-center" style="display: none">
+                    <div class="row mt-2 align-center">
                         <div class="col-lg-4"
                             style="display: {{ Auth::user()->account_type == 'Officer' ? 'none' : 'block' }}">
                             <div class="form-group">
                                 <label class="form-label" for="release_date">Release Date</label>
-                                <span class="form-note">Specify the release date (optional).</span>
+                                <span class="form-note">Specify the release date (will mark citations as paid)</span>
                             </div>
                         </div>
                         <div class="col-lg-8"
@@ -817,6 +817,23 @@
         // Handle reset button click
         $('#reset').on('click', function() {
             clearFormFields();
+        });
+        $('#release_date').on('change', function() {
+            if ($(this).val()) {
+                Swal.fire({
+                    title: 'Confirm Release',
+                    text: 'Setting a release date will mark related traffic citations as paid. Continue?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, proceed'
+                }).then((result) => {
+                    if (!result.isConfirmed) {
+                        $(this).val(''); // Clear the date if user cancels
+                    }
+                });
+            }
         });
     });
 

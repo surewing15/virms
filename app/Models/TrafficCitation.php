@@ -13,11 +13,15 @@ class TrafficCitation extends Model
         'plate_number',
         'violator_name',
         'moved_status',
+        'stay_status',
         'address',
         'date',
         'municipal_ordinance_number',
         'specific_offense',
         'remarks',
         'status',
+    ];
+    protected $casts = [
+
     ];
 }

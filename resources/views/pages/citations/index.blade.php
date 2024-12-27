@@ -83,7 +83,7 @@
                                         <td>
                                             <ul class="project-users g-1">
                                                 <li>
-                                                    {{ $violation->name }}
+                                                    {{ $violation->name ?? null }}
                                                 </li>
                                                 <li>
                                                     @if ($check_once != 1)

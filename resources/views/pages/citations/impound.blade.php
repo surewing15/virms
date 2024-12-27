@@ -38,7 +38,7 @@
                                         </div>
                                         <input type="hidden" name="id_x" value="{{ $id }}">
                                         <input type="text" class="form-control" id="license_no" name="license_no"
-                                            disabled placeholder="Enter here..">
+                                            placeholder="Enter here..">
                                     </div>
                                 </div>
                             </div>
